@@ -1,0 +1,8 @@
+ase
+chgnet
+joblib
+matplotlib
+numpy
+pandas
+pymatgen
+scikit-learn

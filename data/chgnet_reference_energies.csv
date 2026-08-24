@@ -1,0 +1,3 @@
+element,filename,number_of_atoms,energy_eV_per_atom,total_energy_eV
+Al,pure_Al_fcc.cif,32,-3.66430926322937,-117.25789642333984
+Co,pure_Co_fcc.cif,32,-7.024791240692139,-224.79331970214844
