@@ -149,9 +149,9 @@ The Random Forest predictions were compared with the CHGNet-derived target value
 Cross-validation results:
 
 ```text
-MAE  = [YOUR ACTUAL MAE] eV/atom
-RMSE = [YOUR ACTUAL RMSE] eV/atom
-R²   = [YOUR ACTUAL R2]
+MAE  = 0.019639 eV/atom
+RMSE = 0.029922 eV/atom
+R²   = 0.989224
 ```
 
 Because the dataset contains only 21 structures, these metrics should be interpreted as a workflow demonstration rather than evidence of a high-accuracy predictive model.
