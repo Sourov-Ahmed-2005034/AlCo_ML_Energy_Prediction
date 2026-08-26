@@ -2,17 +2,17 @@
 
 ## Overview
 
-This repository presents a small educational computational materials science workflow for Al-Co alloys using a pretrained machine-learning interatomic potential and a simple machine-learning regression model.
+This repository presents a small computational materials science project on Al-Co alloys using a pretrained machine-learning interatomic potential and a simple regression model.
 
-The project was developed as a **PhaseForge-inspired mini-project** to explore the connection between atomistic structure generation, machine-learned interatomic potentials, energy-based thermodynamic analysis, and surrogate machine-learning models.
+The project was inspired by **PhaseForge** and was developed to explore how atomistic structure generation, machine-learned interatomic potentials, energy-based thermodynamic analysis, and surrogate machine-learning models can be connected within one workflow.
 
-The workflow is intentionally small and is intended to demonstrate the computational process rather than provide a complete thermodynamic assessment of the Al-Co system.
+The scope is intentionally limited. The goal is to understand and demonstrate the computational workflow rather than carry out a complete thermodynamic assessment of the Al-Co system.
 
 ## Motivation
 
-My previous research experience has primarily involved molecular dynamics simulations of metallic systems using LAMMPS. I developed this project to explore how atomistic calculations can be connected with machine learning and computational thermodynamics.
+Most of my previous computational research has focused on molecular dynamics simulations of metallic systems using LAMMPS. I developed this project to explore how that atomistic background could be extended toward machine learning and computational thermodynamics.
 
-In particular, the project investigates how a pretrained machine-learning interatomic potential can be used to generate energy data for alloy configurations and how these data can subsequently be analyzed using simple thermodynamic quantities and machine-learning models.
+The main idea was to use a pretrained machine-learning interatomic potential to calculate energies for different alloy configurations, then examine those results using a simple thermodynamic quantity and a small machine-learning model.
 
 ## Workflow
 
@@ -73,14 +73,14 @@ structures/generated/
 
 Atomic structures were generated using the Atomic Simulation Environment (ASE).
 
-A 2 × 2 × 2 conventional FCC supercell containing 32 atoms was used as the parent structure. Al and Co atoms were randomly distributed over the lattice sites for the selected compositions.
+A 2 × 2 × 2 conventional FCC supercell containing 32 atoms was used as the parent structure. Al and Co atoms were randomly assigned to lattice sites for the selected compositions.
 
 ### 2. ML Interatomic Potential
 
-A pretrained **CHGNet** model was used as the machine-learning interatomic potential.
+A pretrained **CHGNet** model was used to calculate the static energies of 21 Al-Co configurations.
 
-CHGNet was used to calculate the static energy of each of the 21 Al-Co configurations.
-
+The model was used only for energy prediction in this project. No CHGNet training or model development was performed.
+  
 The calculated energies were stored in:
 
 ```text
@@ -89,9 +89,9 @@ data/chgnet_energy_dataset.csv
 
 ### 3. Elemental Reference Energies
 
-Pure FCC Al and pure FCC Co structures were generated and evaluated using the same CHGNet model.
+Pure FCC Al and FCC Co structures were generated and evaluated using the same pretrained CHGNet model.  
 
-These elemental energies were used as reference values for calculating an energy-based thermodynamic descriptor.
+These energies were then used as elemental reference values for calculating an energy-based thermodynamic descriptor.
 
 ### 4. FCC-Constrained Static Formation-Energy Estimate
 
@@ -103,7 +103,7 @@ Delta E = E(Al-Co) - x E(Al) - (1-x) E(Co)
 
 where all energies are expressed in eV/atom.
 
-Because both alloy structures and elemental references were treated using an FCC-based static configuration and no structural relaxation was performed, the calculated quantity is described here as an:
+Because both the alloy structures and elemental references were treated as FCC-based static configurations and no structural relaxation was performed, the calculated quantity is described as an:
 
 **FCC-constrained static formation-energy estimate**
 
@@ -112,6 +112,8 @@ rather than a rigorous equilibrium formation enthalpy.
 ### 5. Structural Descriptors
 
 Simple nearest-neighbor descriptors were extracted from each atomic configuration.
+
+These descriptors were used to represent basic local structural information for the subsequent machine-learning regression step.
 
 The machine-learning input features were:
 
